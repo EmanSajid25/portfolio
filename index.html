@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eman Sajid | Portfolio</title>
+  <style>
+    :root { color-scheme: dark;
+      --bg: #000000; --surface: #0a0a0f; --line: #1f1f2a; --text: #e5e7eb; --dim: #8b8b9a; --violet: #a78bfa; --cyan: #22d3ee; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .mono { font-family: "JetBrains Mono", Consolas, "Courier New", monospace; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav .logo { font-family: "JetBrains Mono", Consolas, monospace; color: #fff; font-weight: bold; }
+    nav .logo b { color: var(--violet); }
+    nav a { color: var(--dim); text-decoration: none; margin-left: 20px; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: #fff; }
+
+    .hero { position: relative; overflow: hidden; text-align: center; padding: 130px 20px 110px;
+      background-image: radial-gradient(#26262f 1px, transparent 1px); background-size: 26px 26px; }
+    .hero::before { content: ""; position: absolute; left: 50%; top: 40%; width: 560px; height: 560px; max-width: 120vw; transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(167,139,250,0.28), rgba(34,211,238,0.10) 45%, transparent 70%); filter: blur(30px); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 30%, #000 85%); pointer-events: none; }
+    .hero > * { position: relative; z-index: 2; }
+    .hero .hello { color: var(--dim); font-size: 16px; margin-bottom: 8px; }
+    .hero h1 { font-size: clamp(44px, 9vw, 84px); line-height: 1.05; letter-spacing: -2px; font-weight: 800;
+      background: linear-gradient(90deg, #fff 20%, var(--violet) 60%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 14px; }
+    .hero p.role { font-size: 19px; color: #c4c4d0; max-width: 600px; margin: 0 auto 8px; }
+    .hero .loc { color: var(--dim); font-size: 14px; margin-bottom: 30px; }
+    .btn { display: inline-block; padding: 12px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; margin: 6px; transition: transform .2s, box-shadow .2s; }
+    .btn.main { background: linear-gradient(90deg, var(--violet), var(--cyan)); color: #000; }
+    .btn.main:hover { box-shadow: 0 0 24px rgba(167,139,250,0.5); transform: translateY(-2px); }
+    .btn.ghost { border: 1px solid #3a3a48; color: #fff; }
+    .btn.ghost:hover { border-color: var(--violet); }
+
+    main { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+    section { padding: 70px 0 10px; }
+    h2 { font-size: 30px; color: #fff; margin-bottom: 28px; letter-spacing: -0.5px; }
+    h2 span { font-family: "JetBrains Mono", Consolas, monospace; color: var(--violet); font-size: 20px; margin-right: 10px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; transition: border-color .25s, transform .25s; }
+    .box:hover { border-color: var(--violet); transform: translateY(-3px); }
+    .box h3 { color: #fff; font-size: 17px; margin-bottom: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips span { font-family: "JetBrains Mono", Consolas, monospace; font-size: 13px; color: var(--cyan); background: rgba(34,211,238,0.07); border: 1px solid rgba(34,211,238,0.22); padding: 5px 12px; border-radius: 999px; }
+
+    .proj .tag { font-family: "JetBrains Mono", Consolas, monospace; color: var(--violet); font-size: 13px; display: block; margin-bottom: 10px; }
+    .proj p { color: #b8b8c6; font-size: 15px; margin-bottom: 14px; }
+    .proj a { color: #fff; font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--violet); padding-bottom: 2px; }
+
+    .timeline { border-left: 2px solid var(--line); margin-left: 6px; }
+    .entry { position: relative; padding: 0 0 30px 28px; }
+    .entry::before { content: ""; position: absolute; left: -7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: #000; border: 2px solid var(--violet); }
+    .entry h3 { color: #fff; font-size: 18px; }
+    .entry .date { font-family: "JetBrains Mono", Consolas, monospace; font-size: 13px; color: var(--cyan); display: block; margin: 2px 0 8px; }
+    .entry p { color: #b8b8c6; }
+    .entry ul { color: #b8b8c6; padding-left: 18px; }
+    .entry li { margin-bottom: 6px; }
+
+    footer { margin-top: 90px; border-top: 1px solid var(--line); text-align: center; padding: 60px 20px 50px; background: radial-gradient(ellipse at top, rgba(167,139,250,0.12), transparent 60%); }
+    footer h2 { margin-bottom: 8px; }
+    footer .mail { color: #c4c4d0; margin-bottom: 20px; }
+    footer .mail a { color: #c4c4d0; text-decoration: none; }
+    footer a.link { color: var(--dim); text-decoration: none; margin: 0 12px; font-size: 14px; }
+    footer a.link:hover { color: #fff; }
+    footer .copy { color: #555563; font-size: 13px; margin-top: 28px; }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">eman<b>.</b>dev</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hello mono">&lt;hello world /&gt;</div>
+    <h1>I’m Eman Sajid</h1>
+    <p class="role">Software Engineer. I build reliable software, APIs, and machine learning solutions.</p>
+    <p class="loc mono">Rawalpindi, Pakistan</p>
+    <a href="#projects" class="btn main">See My Work</a>
+    <a href="Eman-CV.pdf" download class="btn ghost">Download CV</a>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <h2><span>01</span>About Me</h2>
+      <p style="max-width:720px; color:#c4c4d0;">I am a Software Engineering graduate from Capital University of Science and Technology (CUST), Islamabad, with a strong foundation in programming, software development, databases, and problem-solving. I have experience building applications, working with APIs, and managing databases. During my internship at Zong CMPak Ltd, I worked with Python, MySQL, and Flask to support machine learning models. I am eager to learn new technologies and help build reliable and efficient software solutions in a professional environment.</p>
+    </section>
+
+    <section id="skills">
+      <h2><span>02</span>Skills &amp; Expertise</h2>
+      <div class="grid">
+        <div class="box"><h3>Programming Languages</h3><div class="chips"><span>Python</span><span>C++</span><span>Java</span></span><span>HTML</span><span>CSS</div></div>
+        <div class="box"><h3>Backend &amp; Web</h3><div class="chips"><span>Flask</span><span>REST APIs</span><span>React</span></div></div>
+        <div class="box"><h3>AI / Machine Learning</h3><div class="chips"><span>Machine Learning</span><span>NLP</span><span>Data Preprocessing</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>TensorFlow</span><span>PyTorch</span><span>Hugging Face</span></div></div>
+        <div class="box"><h3>Databases</h3><div class="chips"><span>MySQL</span></div></div>
+        <div class="box"><h3>Android Development</h3><div class="chips"><span>Android Studio</span><span>Java</span><span>XML Layouts</span><span>Android UI</span><span>Fragments</span><span>RecyclerView</span></div></div>
+        <div class="box"><h3>Software Testing</h3><div class="chips"><span>Manual Testing</span><span>Test Case Design</span><span>Functional Testing</span><span>Test Execution</span><span>Bug Reporting</span><span>Defect Tracking</span><span>SDLC</span><span>STLC</span><span>Software QA</span></div></div>
+        <div class="box"><h3>Tools &amp; Technologies</h3><div class="chips"><span>Git</span><span>GitHub</span><span>Jupyter Notebook</span><span>VS Code</span><span>Android Studio</span><span>PyCharm</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2><span>03</span>Projects</h2>
+      <div class="grid">
+
+        <div class="box proj">
+          <span class="tag">Python · Flask · React · MySQL</span>
+          <h3>AI Visibility Monitoring and Optimization System</h3>
+          <p>A full-stack platform to monitor and optimize brand visibility in AI-generated responses using NLP-based scoring and AI model integration. I integrated the Groq API into the scoring pipeline and built an admin reporting module that generates PDF and Excel reports. I worked with a team to bring SEO tools and content generation features into one codebase.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">Python · NLP · Machine Learning · Scikit-learn</span>
+          <h3>Fake Product Reviews Detection</h3>
+          <p>An AI-based system for e-commerce platforms that detects fake product reviews using NLP and machine learning. I preprocessed review text, trained classification models, and evaluated their performance.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">Python · Machine Learning</span>
+          <h3>Rainfall Prediction System</h3>
+          <p>A machine learning system that predicts the probability of rainfall based on temperature, humidity, wind speed, and atmospheric pressure.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">Android · Java · XML</span>
+          <h3>Mental Health Companion App</h3>
+          <p>An Android app for daily mental wellness and self-care, built with Java, XML, and Android Studio. It includes mood tracking, journal entries, gratitude logs, goal setting, daily checklists, and sleep tracking, plus breathing exercises, positive affirmations, daily quotes, mindful reminders, and an image gallery.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">Python</span>
+          <h3>Order Tracking System</h3>
+          <p>A Python application that lets users manage, monitor, and track the status of their orders based on the dataset.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">C++ · OOP · Data Structures</span>
+          <h3>Railway Management System</h3>
+          <p>A C++ system to manage train schedules, ticket bookings, and passenger records. It handles data, searching, and updating records using object-oriented programming concepts.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+        <div class="box proj">
+          <span class="tag">Python · MySQL</span>
+          <h3>Zong Employee Chatbot</h3>
+          <p>A desktop chatbot application in Python that connects to the Zong chatbot backend. It gives employees a simple chat interface and lets them switch between different responses.</p>
+          <a href="#">View on GitHub</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2><span>04</span>Experience</h2>
+      <div class="timeline">
+        <div class="entry">
+          <h3>Intern, Zong CMPak Ltd</h3>
+          <span class="date">August 2025 – September 2025</span>
+          <ul>
+            <li>Worked with Python and MySQL for database management, querying, and handling datasets.</li>
+            <li>Preprocessed and analyzed data to support machine learning model training and predictive insights.</li>
+            <li>Built and tested RESTful APIs using Flask to integrate machine learning models with applications.</li>
+            <li>Gained hands-on experience in database design, data preprocessing, and applying machine learning to real-world problems.</li>
+            <li>Developed the Zong Employee Chatbot.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2><span>05</span>Education</h2>
+      <div class="timeline">
+        <div class="entry">
+          <h3>BS Software Engineering</h3>
+          <span class="date">Sep 2022 – July 2026</span>
+          <p>Capital University of Science and Technology (CUST), Islamabad</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <h2>Let’s Work Together</h2>
+    <p class="mail mono"><a href="mailto:emansajid812@gmail.com">emansajid812@gmail.com</a></p>
+    <a href="Eman Sajid CV _.pdf" download class="btn main">Download CV</a>
+    <p style="margin-top:14px;">
+      <a class="link" href="https://www.linkedin.com/in/eman-sajid-88aa28293/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="link" href="#">GitHub</a>
+    </p>
+    <p class="copy mono">© Eman Sajid</p>
+  </footer>
+
+</body>
+</html>
